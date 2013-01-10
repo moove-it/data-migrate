@@ -13,7 +13,7 @@ module DataMigrate
 
       def create_data_migration
         set_local_assigns!
-        unless  options.with_schema_migration?
+        if options.with_schema_migration?
           migration_template "migration.rb", "db/migrate/#{file_name}.rb"
         end
         migration_template "data_migration.rb", "db/data/#{file_name}.rb"
