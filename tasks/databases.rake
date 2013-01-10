@@ -1,6 +1,6 @@
 namespace :db do
   namespace :migrate do
-    desc "Migrate the database data and schema (options: VERSION=x, VERBOSE=false)."
+    desc 'Migrate the database data and schema (options: VERSION=x, VERBOSE=false).'
     task :with_data => :environment do
       assure_data_schema_table
 
@@ -121,7 +121,7 @@ namespace :db do
     end
 
     namespace :status do
-      desc "Display status of data and schema migrations"
+      desc 'Display status of data and schema migrations'
       task :with_data => :environment do
         config = connect_to_database
         next unless config
@@ -214,6 +214,7 @@ namespace :db do
 end
 
 namespace :data do
+  desc 'Only run data migrations (options: VERSION=x, VERBOSE=false).'
   task :migrate => :environment do
     assure_data_schema_table
     ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
